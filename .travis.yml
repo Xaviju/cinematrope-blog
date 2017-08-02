@@ -22,15 +22,13 @@ before_install:
 install:
   - wget https://github.com/gohugoio/hugo/releases/download/v0.25.1/hugo_0.25.1_Linux-64bit.tar.gz
   - tar -xzvf hugo_0.25.1_Linux-64bit.tar.gz
-  - pwd
-  - ls
   - eval $(ssh-agent -s)
   - chmod 600 travis_access && ssh-add travis_access
   - mkdir -p ~/.ssh
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
 # Generamos nuestro contenido estático
-script: hugo
+script: ./hugo
 
 # Y realizamos el rsyn igual que antes
 after_success:
