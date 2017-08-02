@@ -20,15 +20,15 @@ before_install:
 
 # en esta sección instalaremos los requisitos si los tenemos y sobre todo, las 4 últimas líneas son las importantes para gestionar la clave privada
 install:
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.25.1/hugo_0.25.1_Linux-64bit.tar.gz
-  - tar -xzvf hugo_0.25.1_Linux-64bit.tar.gz
   - eval $(ssh-agent -s)
   - chmod 600 travis_access && ssh-add travis_access
   - mkdir -p ~/.ssh
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - GOPATH=$HOME/go go get github.com/spf13/hugo
 
 # Generamos nuestro contenido estático
-script: ./hugo && ls -laR
+script: 
+  - "$HOME/go/bin/hugo"
 
 # Y realizamos el rsyn igual que antes
 after_success:
