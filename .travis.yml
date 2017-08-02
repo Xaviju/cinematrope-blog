@@ -12,7 +12,6 @@ addons:
     packages:
       - rsync
       - openssh-client
-      - hugo
 
 # Estas son las líneas que añadimos antes en el comando "--add", y que no tocaremos
 before_install:
@@ -21,6 +20,8 @@ before_install:
 
 # en esta sección instalaremos los requisitos si los tenemos y sobre todo, las 4 últimas líneas son las importantes para gestionar la clave privada
 install:
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.25.1/hugo_0.25.1_Linux-64bit.tar.gz
+  - tar -xzvf hugo_0.25.1_Linux-64bit.tar.gz
   - eval $(ssh-agent -s)
   - chmod 600 travis_access && ssh-add travis_access
   - mkdir -p ~/.ssh
