@@ -28,7 +28,7 @@ install:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
 # Generamos nuestro contenido estático
-script: ./hugo
+script: ./hugo && ls -laR
 
 # Y realizamos el rsyn igual que antes
 after_success:
